@@ -12,7 +12,7 @@ package sistemaambulancia;
 public interface ISistema {
 
     public enum TipoRet {OK, NO_IMPLEMENTADA, ERROR;}
-
+//Comentario
     
 
     public TipoRet crearSistemaDeEmergencias(int cantidadCiudades);
