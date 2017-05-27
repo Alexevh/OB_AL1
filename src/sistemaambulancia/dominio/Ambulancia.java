@@ -8,7 +8,7 @@ package sistemaambulancia.dominio;
 import sistemaambulancia.dominio.TAD_Chofer.ListaChofer;
 
 public class Ambulancia {
-    private enum TipoEstado{
+    public enum TipoEstado{
         NO_DISPONIBLE, DISPONIBLE, ATENDIENDO
     }
     
@@ -16,6 +16,7 @@ public class Ambulancia {
     private TipoEstado estado;
     private Ciudad ciudad;
     private ListaChofer choferes;
+    private Integer emergencias;
     
     public String getId(){
         return id;
@@ -25,16 +26,36 @@ public class Ambulancia {
         return estado;
     }
     
+    public void setEstado(TipoEstado estado){
+        this.estado=estado;
+    }
+    
     public Ciudad getCiudad(){
         return ciudad;
+    }
+    
+    public void setCiudad(Ciudad ciudad){
+        this.ciudad=ciudad;
     }
     
     public ListaChofer getChoferes(){
         return choferes;
     }
     
+    public Integer getEmergencias(){
+        return emergencias;
+    }
     
+    public void incrementarEmergencias(){
+        this.emergencias++;
+    }
     
+    public Ambulancia(String id, Ciudad ciudad){
+        this.id=id;
+        this.ciudad=ciudad;
+        this.estado=TipoEstado.DISPONIBLE;
+        this.emergencias=0;
+    }
     
     
 }

@@ -6,22 +6,31 @@
 package sistemaambulancia.dominio;
 
 public class Chofer {
-    
+
     private String cedula;
     private String nombre;
     private Ambulancia ambulancia;
-    
-    public String getId(){
+
+    public String getId() {
         return cedula;
     }
-    
-    public String getNombre(){
+
+    public String getNombre() {
         return nombre;
     }
-    
-    public Ambulancia getAmbulancia(){
+
+    public Ambulancia getAmbulancia() {
         return ambulancia;
     }
     
-    
+    public void setAmbulancia(Ambulancia ambulancia) {
+        this.ambulancia = ambulancia;
+    }
+
+    public Chofer(String cedula, String nombre, Ambulancia ambulancia) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.ambulancia = ambulancia;
+    }
+
 }

@@ -16,15 +16,20 @@ public class Ciudad {
     public Integer getId() {
         return id;
     }
-    
-    public String getNombre(){
+
+    public String getNombre() {
         return nombre;
     }
-    
-    public ListaAmbulancia getAmbulancias(){
+
+    public ListaAmbulancia getAmbulancias() {
         return ambulancias;
     }
-    
-    
+
+    public Ciudad(Integer id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+        this.ambulancias = new ListaAmbulancia();
+    }
+
     
 }

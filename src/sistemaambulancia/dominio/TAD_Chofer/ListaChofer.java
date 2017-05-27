@@ -13,16 +13,22 @@ import sistemaambulancia.dominio.TAD_Chofer.NodoChofer;
 public class ListaChofer {
     
     private NodoChofer inicio;
-
-    ListaChofer() {
-        inicio = null;
+    private Integer cantidad;
+    
+    public Integer getCantidad(){
+        return cantidad;
     }
 
-    boolean esVacia() {
+    public ListaChofer() {
+        inicio = null;
+        cantidad = 0;
+    }
+
+    public boolean esVacia() {
         return inicio == null;
     }
 
-    void insertarInicio(Chofer cho) {
+    public void insertarInicio(Chofer cho) {
         NodoChofer nodo = new NodoChofer(cho);
         if (this.esVacia()) {
             this.inicio = nodo;
@@ -30,6 +36,7 @@ public class ListaChofer {
             nodo.setSiguiente(inicio);
             this.inicio = nodo;
         }
+        this.cantidad++;
     }
 
     public void setInicio(NodoChofer nodo) {
@@ -61,7 +68,7 @@ public class ListaChofer {
         return encontre;
     }
     
-    public Chofer Buscar(String id){
+    public Chofer buscar(String id){
         Chofer cho;
         Chofer resCho = null;
         ListaChofer listaAux = this;
@@ -87,6 +94,26 @@ public class ListaChofer {
             NodoChofer nodo = new NodoChofer(cho);
             nodo.setSiguiente(nodoAux.getSiguiente());
             nodoAux.setSiguiente(nodo);    
+        }
+        this.cantidad++;
+    }
+    
+    public void eliminarChofer(Chofer cho) {
+        if (!this.esVacia() && this.contains(cho.getId())) {
+
+            NodoChofer nodoAux = inicio;
+            if (nodoAux.getChofer().equals(cho)) {
+                this.inicio = nodoAux.getSiguiente();
+            } else {
+                while (!nodoAux.getSiguiente().getChofer().equals(cho)) {
+                    nodoAux=nodoAux.getSiguiente();
+                }
+                nodoAux.setSiguiente(nodoAux.getSiguiente().getSiguiente());
+                
+                NodoChofer nodoEliminado = nodoAux.getSiguiente();                
+                nodoEliminado.setSiguiente(null);
+            }
+            this.cantidad--;
         }
     }
     

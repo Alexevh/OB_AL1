@@ -5,7 +5,19 @@
  */
 package sistemaambulancia;
 
+import sistemaambulancia.dominio.TAD_Ambulancia.ListaAmbulancia;
+import sistemaambulancia.dominio.TAD_Chofer.ListaChofer;
+import sistemaambulancia.dominio.TAD_Ciudad.ListaCiudad;
+
 public interface ISistema {
+    
+    public Integer getCantCiudades();
+    
+    public ListaAmbulancia getListaAmbulancias();
+    
+    public ListaChofer getListaChoferes();
+    
+    public ListaCiudad getListaCiudades();
 
     public enum TipoRet {OK, NO_IMPLEMENTADA, ERROR;}
 
