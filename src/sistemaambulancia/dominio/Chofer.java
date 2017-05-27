@@ -5,26 +5,23 @@
  */
 package sistemaambulancia.dominio;
 
-import sistemaambulancia.dominio.TAD_Ambulancia.ListaAmbulancia;
-
-public class Ciudad {
-
-    private Integer id;
+public class Chofer {
+    
+    private String cedula;
     private String nombre;
-    ListaAmbulancia ambulancias;
-
-    public Integer getId() {
-        return id;
+    private Ambulancia ambulancia;
+    
+    public String getId(){
+        return cedula;
     }
     
     public String getNombre(){
         return nombre;
     }
     
-    public ListaAmbulancia getAmbulancias(){
-        return ambulancias;
+    public Ambulancia getAmbulancia(){
+        return ambulancia;
     }
-    
     
     
 }

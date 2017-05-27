@@ -5,16 +5,13 @@
  */
 package sistemaambulancia;
 
-/**
- *
- * @author docenteFI
- */
 public class SistemaAmbulancia implements ISistema {
+    
+    
 
     @Override
     public TipoRet eliminarAmbulancia(String ambulanciaID) {
         return TipoRet.NO_IMPLEMENTADA;
-
     }
 
     @Override
