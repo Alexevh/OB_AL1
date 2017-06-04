@@ -1,0 +1,10 @@
+
+
+1. En agregarCiudad correji el retorno que daba al ingresarlabien, o sea daba
+error cuando deberia haber devuelto OK (Linea 276)
+
+2. MOdifique la linea 101 del sistema ambulancia para eliminar una ambulancia,
+obtengo la lista de choferes ANTES de eliminar la ambulancia. Tambien faltaba
+inicializar la lista de choferes en el constructor de la ambulancia.
+
+3. En informeAMbulancia hay que ordenar las ambulancias en la parte del print

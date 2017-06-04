@@ -13,6 +13,8 @@ public class Ciudad {
     private String nombre;
     ListaAmbulancia ambulancias;
 
+  
+
     public Integer getId() {
         return id;
     }
@@ -31,5 +33,18 @@ public class Ciudad {
         this.ambulancias = new ListaAmbulancia();
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setAmbulancias(ListaAmbulancia ambulancias) {
+        this.ambulancias = ambulancias;
+    }
+
+    
     
 }

@@ -55,6 +55,7 @@ public class Ambulancia {
         this.ciudad=ciudad;
         this.estado=TipoEstado.DISPONIBLE;
         this.emergencias=0;
+        this.choferes = new ListaChofer();
     }
     
     

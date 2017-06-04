@@ -17,6 +17,18 @@ public class SistemaAmbulancia implements ISistema {
     private ListaAmbulancia listaAmbulancias;
     private ListaChofer listaChoferes;
     private ListaCiudad listaCiudades;
+    private Integer[][] MapaCiudades;
+
+    public Integer[][] getMapaCiudades() {
+        return MapaCiudades;
+    }
+
+    public void setMapaCiudades(Integer[][] MapaCiudades) {
+        this.MapaCiudades = MapaCiudades;
+    }
+    
+    
+    
 
     @Override
     public Integer getCantCiudades() {
@@ -64,13 +76,15 @@ public class SistemaAmbulancia implements ISistema {
     //LIBERA TODA LA MEMORIA UTILIZADA?
     @Override
     public TipoRet destruirSistemaEmergencias() {
-        TipoRet ret = TipoRet.NO_IMPLEMENTADA;
+        TipoRet ret = TipoRet.OK;
         listaAmbulancias = null;
         listaCiudades = null;
         listaChoferes = null;
         cantCiudades = null;
         return ret;
     }
+    
+    
 
     @Override
     public TipoRet eliminarAmbulancia(String ambulanciaID) {
@@ -84,10 +98,11 @@ public class SistemaAmbulancia implements ISistema {
             ret = TipoRet.ERROR;
             System.out.println("No es posible eliminar la ambulancia " + ambulanciaID + ".");
         } else {
+            ListaChofer choferesAmbulanciaEliminada = amb.getChoferes();
             Ciudad ciu = amb.getCiudad();
             ciu.getAmbulancias().eliminarAmbulancia(amb);
             listaAmbulancias.eliminarAmbulancia(amb);
-            ListaChofer choferesAmbulanciaEliminada = amb.getChoferes();
+            
             while (!choferesAmbulanciaEliminada.esVacia()) {
                 Chofer cho = choferesAmbulanciaEliminada.head();
                 cho.setAmbulancia(null);
@@ -261,7 +276,7 @@ public class SistemaAmbulancia implements ISistema {
         } else {
             Ciudad ciu = new Ciudad(idLibre, ciudadNombre);
             listaCiudades.insertarOrdenado(ciu);
-            ret = TipoRet.ERROR;
+            ret = TipoRet.OK;
         }
         return ret;
     }
@@ -392,5 +407,20 @@ public class SistemaAmbulancia implements ISistema {
         }
         return ret;
     }
+    
+    
+    public void poblarCiudades()
+    {
+     
+       this.agregarCiudad("Montevideo");
+       this.agregarCiudad("Canelones");
+       this.agregarCiudad("Las Piedras");
+       
+       
+        
+        
+    }        
 
+    
+    
 }
