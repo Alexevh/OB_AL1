@@ -376,11 +376,13 @@ public class SistemaAmbulancia implements ISistema {
 
         int filas = this.MapaCiudades.length;
         int columnas = this.MapaCiudades[0].length;
-        int ciudadCercana = 0;
+        int inicio = 0;
+        int destino =0;
         
         //Recorro las filas
         for (int i=0; i<filas; i++)
         {
+            
           
         }
         
