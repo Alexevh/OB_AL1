@@ -38,10 +38,58 @@ public class PruebaRegistrarCiudad {
         
         TipoRet retornoObtenido = sistema.agregarCiudad("Montevideo");
         TipoRet retornoEsperado = TipoRet.ERROR;
+        sistema.destruirSistemaEmergencias();
+        Assert.assertEquals(retornoObtenido, retornoEsperado);
+        
+    }
+    
+    @Test
+    public void testRegistrarCiudadSinCapacidadenSistema() {
+    
+        SistemaAmbulancia sistema = new SistemaAmbulancia();
+        
+        sistema.crearSistemaDeEmergencias(3);
+        sistema.agregarCiudad("Montevideo");
+        sistema.agregarCiudad("Paanado");
+        sistema.agregarCiudad("Las Piedras");
+        
+        //Esta dara el error
+        TipoRet retornoObtenido = sistema.agregarCiudad("Las toscas");
+        TipoRet retornoEsperado = TipoRet.ERROR;
        
         Assert.assertEquals(retornoObtenido, retornoEsperado);
         
     }
     
+       @Test
+    public void testLIstarCiudades() {
     
+        SistemaAmbulancia sistema = new SistemaAmbulancia();
+        
+        sistema.crearSistemaDeEmergencias(5);
+        sistema.agregarCiudad("Montevideo");
+        sistema.agregarCiudad("Panado");
+        sistema.agregarCiudad("Las Piedras");
+        
+ 
+        TipoRet retornoObtenido = sistema.listarCiudades();
+        TipoRet retornoEsperado = TipoRet.OK;
+       
+        Assert.assertEquals(retornoObtenido, retornoEsperado);
+        
+    }
+    
+    @Test
+    public void testLIstarCiudadesMapaVacio() {
+    
+        SistemaAmbulancia sistema = new SistemaAmbulancia();
+        
+        sistema.crearSistemaDeEmergencias(5);
+       
+        TipoRet retornoObtenido = sistema.listarCiudades();
+        TipoRet retornoEsperado = TipoRet.OK;
+       
+        Assert.assertEquals(retornoObtenido, retornoEsperado);
+        
+    }
 }

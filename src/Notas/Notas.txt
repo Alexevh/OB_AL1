@@ -8,3 +8,9 @@ obtengo la lista de choferes ANTES de eliminar la ambulancia. Tambien faltaba
 inicializar la lista de choferes en el constructor de la ambulancia.
 
 3. En informeAMbulancia hay que ordenar las ambulancias en la parte del print
+
+4. En agregar ciudad hay un problema con la capacidad, si agregamos un sistema
+con capacidad para 3 ciudadades y agregamos 4 da error en las 3 ultimas y no solo
+en la 4ta, si en cambio usamos 4 como capacidad si da error solo en la ultima.
+
+

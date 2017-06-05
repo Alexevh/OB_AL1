@@ -118,7 +118,7 @@ public class ListaCiudad {
     }
 
     public Integer getIdNoAsignado() {
-        Integer idMenor = cantidad + 1;
+        Integer idMenor = cantidad +1;
         Integer i = 1;
         Ciudad ciu;
         boolean encontre = false;
