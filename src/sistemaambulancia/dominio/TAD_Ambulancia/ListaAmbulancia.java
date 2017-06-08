@@ -48,6 +48,7 @@ public class ListaAmbulancia {
     public ListaAmbulancia tail() {
         ListaAmbulancia tail = new ListaAmbulancia();
         tail.setInicio(this.inicio.getSiguiente());
+        tail.cantidad = this.cantidad - 1;
         return tail;
     }
 

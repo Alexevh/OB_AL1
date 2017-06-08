@@ -51,6 +51,7 @@ public class ListaCiudad {
     public ListaCiudad tail() {
         ListaCiudad tail = new ListaCiudad();
         tail.setInicio(this.inicio.getSiguiente());
+        tail.cantidad = this.cantidad - 1;
         return tail;
     }
 

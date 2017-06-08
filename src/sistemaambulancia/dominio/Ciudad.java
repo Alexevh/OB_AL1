@@ -45,6 +45,9 @@ public class Ciudad {
         this.ambulancias = ambulancias;
     }
 
-    
+    @Override
+    public String toString(){
+        return this.getId() + " - " + this.getNombre();
+    }
     
 }

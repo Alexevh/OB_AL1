@@ -50,6 +50,7 @@ public class ListaChofer {
     public ListaChofer tail() {
         ListaChofer tail = new ListaChofer();
         tail.setInicio(this.inicio.getSiguiente());
+        tail.cantidad = this.cantidad - 1;
         return tail;
     }
 
