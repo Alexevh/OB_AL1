@@ -5,6 +5,7 @@
  */
 package sistemaambulancia.dominio;
 
+import static java.util.Objects.isNull;
 import sistemaambulancia.dominio.TAD_Ambulancia.ListaAmbulancia;
 
 public class Ciudad {
@@ -12,8 +13,6 @@ public class Ciudad {
     private Integer id;
     private String nombre;
     ListaAmbulancia ambulancias;
-
-  
 
     public Integer getId() {
         return id;
@@ -46,8 +45,17 @@ public class Ciudad {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.getId() + " - " + this.getNombre();
     }
-    
+
+    public void destroy() {
+        if (!isNull(this.ambulancias)) {
+            this.ambulancias.destroy();
+            this.ambulancias = null;
+        }
+        this.id = null;
+        this.nombre = null;
+    }
+
 }

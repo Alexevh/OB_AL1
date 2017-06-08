@@ -105,15 +105,24 @@ public class ListaAmbulancia {
                 this.inicio = nodoAux.getSiguiente();
             } else {
                 while (!nodoAux.getSiguiente().getAmbulancia().equals(amb)) {
-                    nodoAux=nodoAux.getSiguiente();
+                    nodoAux = nodoAux.getSiguiente();
                 }
                 nodoAux.setSiguiente(nodoAux.getSiguiente().getSiguiente());
-                
-                NodoAmbulancia nodoEliminado = nodoAux.getSiguiente();                
+
+                NodoAmbulancia nodoEliminado = nodoAux.getSiguiente();
                 nodoEliminado.setSiguiente(null);
             }
             this.cantidad--;
         }
     }
 
+    public void destroy() {
+        ListaAmbulancia lista = this;
+        while (!lista.esVacia()) {            
+            lista.head().destroy();            
+            lista = lista.tail();
+        }
+        this.inicio=null;
+        this.cantidad=null;
+    }
 }

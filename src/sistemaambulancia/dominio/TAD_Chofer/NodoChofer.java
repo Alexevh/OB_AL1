@@ -28,4 +28,9 @@ public class NodoChofer {
         this.cho=cho;
         this.siguiente=null;
     }
+    
+    public void destroy(){
+        this.cho.destroy();
+        this.siguiente=null;
+    }
 }

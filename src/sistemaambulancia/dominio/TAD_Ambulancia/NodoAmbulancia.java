@@ -27,4 +27,9 @@ public class NodoAmbulancia {
         this.amb=amb;
         this.siguiente=null;
     }
+    
+    public void destroy(){
+        this.amb.destroy();
+        this.siguiente=null;
+    }
 }

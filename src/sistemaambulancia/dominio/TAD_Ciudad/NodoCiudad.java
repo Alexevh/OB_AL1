@@ -29,4 +29,9 @@ public class NodoCiudad {
         this.ciu=ciu;
         this.siguiente=null;
     }
+    
+    public void destroy(){
+        this.ciu.destroy();
+        this.siguiente=null;
+    }
 }

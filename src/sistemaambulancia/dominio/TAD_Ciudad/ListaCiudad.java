@@ -136,5 +136,15 @@ public class ListaCiudad {
         }
         return idMenor;
     }
+    
+    public void destroy() {
+        ListaCiudad lista = this;
+        while (!lista.esVacia()) {            
+            lista.head().destroy();            
+            lista = lista.tail();
+        }
+        this.inicio=null;
+        this.cantidad=null;
+    }
 
 }

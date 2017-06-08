@@ -118,4 +118,14 @@ public class ListaChofer {
         }
     }
     
+    public void destroy() {
+        ListaChofer lista = this;
+        while (!lista.esVacia()) {            
+            lista.head().destroy();            
+            lista = lista.tail();
+        }
+        this.inicio=null;
+        this.cantidad=null;
+    }
+    
 }

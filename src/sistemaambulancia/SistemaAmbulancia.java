@@ -78,6 +78,9 @@ public class SistemaAmbulancia implements ISistema {
     @Override
     public TipoRet destruirSistemaEmergencias() {
         TipoRet ret = TipoRet.OK;
+        listaAmbulancias.destroy();
+        listaCiudades.destroy();
+        listaChoferes.destroy();
         listaAmbulancias = null;
         listaCiudades = null;
         listaChoferes = null;

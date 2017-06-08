@@ -5,6 +5,8 @@
  */
 package sistemaambulancia.dominio;
 
+import static java.util.Objects.isNull;
+
 public class Chofer {
 
     private String cedula;
@@ -22,7 +24,7 @@ public class Chofer {
     public Ambulancia getAmbulancia() {
         return ambulancia;
     }
-    
+
     public void setAmbulancia(Ambulancia ambulancia) {
         this.ambulancia = ambulancia;
     }
@@ -31,6 +33,12 @@ public class Chofer {
         this.cedula = cedula;
         this.nombre = nombre;
         this.ambulancia = ambulancia;
+    }
+
+    public void destroy() {
+        this.cedula = null;
+        this.nombre = null;
+        this.ambulancia = null;
     }
 
 }

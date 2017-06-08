@@ -5,58 +5,68 @@
  */
 package sistemaambulancia.dominio;
 
+import static java.util.Objects.isNull;
 import sistemaambulancia.dominio.TAD_Chofer.ListaChofer;
 
 public class Ambulancia {
-    public enum TipoEstado{
+
+    public enum TipoEstado {
         NO_DISPONIBLE, DISPONIBLE, ATENDIENDO
     }
-    
-    private String id;    
+
+    private String id;
     private TipoEstado estado;
     private Ciudad ciudad;
     private ListaChofer choferes;
     private Integer emergencias;
-    
-    public String getId(){
+
+    public String getId() {
         return id;
     }
-    
-    public TipoEstado getEstado(){
+
+    public TipoEstado getEstado() {
         return estado;
     }
-    
-    public void setEstado(TipoEstado estado){
-        this.estado=estado;
+
+    public void setEstado(TipoEstado estado) {
+        this.estado = estado;
     }
-    
-    public Ciudad getCiudad(){
+
+    public Ciudad getCiudad() {
         return ciudad;
     }
-    
-    public void setCiudad(Ciudad ciudad){
-        this.ciudad=ciudad;
+
+    public void setCiudad(Ciudad ciudad) {
+        this.ciudad = ciudad;
     }
-    
-    public ListaChofer getChoferes(){
+
+    public ListaChofer getChoferes() {
         return choferes;
     }
-    
-    public Integer getEmergencias(){
+
+    public Integer getEmergencias() {
         return emergencias;
     }
-    
-    public void incrementarEmergencias(){
+
+    public void incrementarEmergencias() {
         this.emergencias++;
     }
-    
-    public Ambulancia(String id, Ciudad ciudad){
-        this.id=id;
-        this.ciudad=ciudad;
-        this.estado=TipoEstado.DISPONIBLE;
-        this.emergencias=0;
+
+    public Ambulancia(String id, Ciudad ciudad) {
+        this.id = id;
+        this.ciudad = ciudad;
+        this.estado = TipoEstado.DISPONIBLE;
+        this.emergencias = 0;
         this.choferes = new ListaChofer();
     }
-    
-    
+
+    public void destroy() {
+        if (!isNull(this.choferes)) {
+            this.choferes.destroy();
+            this.choferes=null;
+        }
+            this.id = null;
+            this.estado = null;
+            this.emergencias = null;        
+    }
 }
