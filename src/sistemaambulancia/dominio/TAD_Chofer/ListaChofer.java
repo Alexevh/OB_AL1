@@ -36,7 +36,6 @@ public class ListaChofer {
             nodo.setSiguiente(inicio);
             this.inicio = nodo;
         }
-        this.cantidad++;
     }
 
     public void setInicio(NodoChofer nodo) {
@@ -94,7 +93,7 @@ public class ListaChofer {
             }
             NodoChofer nodo = new NodoChofer(cho);
             nodo.setSiguiente(nodoAux.getSiguiente());
-            nodoAux.setSiguiente(nodo);    
+            nodoAux.setSiguiente(nodo);            
         }
         this.cantidad++;
     }

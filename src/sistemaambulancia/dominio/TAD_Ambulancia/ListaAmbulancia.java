@@ -34,7 +34,6 @@ public class ListaAmbulancia {
             nodo.setSiguiente(inicio);
             this.inicio = nodo;
         }
-        this.cantidad++;
     }
 
     public void setInicio(NodoAmbulancia nodo) {

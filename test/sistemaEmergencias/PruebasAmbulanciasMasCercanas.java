@@ -15,7 +15,7 @@ import sistemaambulancia.ISistema;
 import sistemaambulancia.ISistema.TipoRet;
 import sistemaambulancia.SistemaAmbulancia;
 
-public class PruebasRutasRapidas {
+public class PruebasAmbulanciasMasCercanas {
 
     SistemaAmbulancia sistema = Crear_Cargar();
 
@@ -46,12 +46,13 @@ public class PruebasRutasRapidas {
     }
 
     @Test
-    public void testBuscarRutaMasRapida() {
+    public void testBuscarAmbulanciaMasCercana() {
 
-        ISistema.TipoRet retornoObtenido = sistema.rutaMasRapida(0, 4);
+        ISistema.TipoRet retornoObtenido = sistema.ambulanciaMasCercana(0);
         ISistema.TipoRet retornoEsperado = ISistema.TipoRet.OK;
 
         Assert.assertEquals(retornoEsperado, retornoObtenido);
+
     }
 
 }

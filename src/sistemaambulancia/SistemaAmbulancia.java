@@ -377,11 +377,12 @@ public class SistemaAmbulancia implements ISistema {
         Integer[][] mapa = getMapaCiudades();
         int nroCiudades = mapa.length;
         int ciudadDestino = ciudadID;
-        Integer ciudadAmbulancia = null;
+        Integer ciudadOrigen = null;
         Integer conexion = null;
         Integer conexionFinal = null;
         int tiempo = -1;
         Ambulancia amb = null;
+        Ambulancia ambFinal = null;        
         Ciudad ciu = null;
 
         for (int ori = 0; ori < nroCiudades; ori++) {
@@ -394,23 +395,26 @@ public class SistemaAmbulancia implements ISistema {
                         if (mapa[ori][conexion] + mapa[conexion][ciudadDestino] < tiempo || tiempo == -1) {
                             tiempo = mapa[ori][conexion] + mapa[conexion][ciudadDestino];
                             conexionFinal = conexion;
-                            ciudadAmbulancia = ori;
+                            ciudadOrigen = ori;
+                            ambFinal = amb;
                         }
                     }
                 }
             }
         }
 
-        if (isNull(conexion)) {
-            ret = TipoRet.ERROR;
-            System.out.println("No hay ruta para la ciudad " + ciudadID);
-        } else if (isNull(amb)) {
+        if (isNull(amb)) {
             ret = TipoRet.ERROR;
             System.out.println("No hay ambulancias disponibles.");
+        } else if (isNull(conexionFinal)) {
+            ret = TipoRet.ERROR;
+            System.out.println("No hay ruta para la ciudad " + ciudadID);
         } else {
             ret = TipoRet.OK;
-            System.out.println("Ambulancia más cercana a " + ciu.toString());
-            System.out.println("Ambulancia: " + amb.getId());
+            Ciudad ciuDes = listaCiudades.buscar(ciudadDestino);
+            //Ciudad ciuOri = listaCiudades.buscar(ciudadOrigen);
+            System.out.println("Ambulancia más cercana a " + ciuDes.toString());
+            System.out.println("Ambulancia: " + ambFinal.getId());
             System.out.println("Demora del viaje: " + tiempo);
         }
 

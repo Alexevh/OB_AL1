@@ -37,7 +37,6 @@ public class ListaCiudad {
             nodo.setSiguiente(inicio);
             this.inicio = nodo;
         }
-        this.cantidad++;
     }
 
     public void setInicio(NodoCiudad nodo) {
@@ -51,7 +50,7 @@ public class ListaCiudad {
     public ListaCiudad tail() {
         ListaCiudad tail = new ListaCiudad();
         tail.setInicio(this.inicio.getSiguiente());
-        tail.cantidad = this.cantidad - 1;
+        tail.cantidad = this.cantidad - 1;        
         return tail;
     }
 
@@ -95,11 +94,11 @@ public class ListaCiudad {
             }
             NodoCiudad nodo = new NodoCiudad(ciu);
             nodo.setSiguiente(nodoAux.getSiguiente());
-            nodoAux.setSiguiente(nodo);
+            nodoAux.setSiguiente(nodo);            
         }
         this.cantidad++;
     }
-    
+
     public void eliminarCiudad(Ciudad ciu) {
         if (!this.esVacia() && this.contains(ciu.getNombre())) {
             NodoCiudad nodoAux = inicio;
@@ -107,11 +106,11 @@ public class ListaCiudad {
                 this.inicio = nodoAux.getSiguiente();
             } else {
                 while (!nodoAux.getSiguiente().getCiudad().equals(ciu)) {
-                    nodoAux=nodoAux.getSiguiente();
+                    nodoAux = nodoAux.getSiguiente();
                 }
                 nodoAux.setSiguiente(nodoAux.getSiguiente().getSiguiente());
-                
-                NodoCiudad nodoEliminado = nodoAux.getSiguiente();                
+
+                NodoCiudad nodoEliminado = nodoAux.getSiguiente();
                 nodoEliminado.setSiguiente(null);
             }
             this.cantidad--;
@@ -131,20 +130,31 @@ public class ListaCiudad {
                 i++;
             } else {
                 encontre = true;
-                idMenor=i;
+                idMenor = i;
             }
         }
         return idMenor;
     }
-    
+
     public void destroy() {
         ListaCiudad lista = this;
-        while (!lista.esVacia()) {            
-            lista.head().destroy();            
+        while (!lista.esVacia()) {
+            lista.head().destroy();
             lista = lista.tail();
         }
-        this.inicio=null;
-        this.cantidad=null;
+        this.inicio = null;
+        this.cantidad = null;
+    }
+
+    @Override
+    public String toString() {
+        ListaCiudad lista = this;
+        String listaStr = "";
+        while (!lista.esVacia()) {
+            listaStr += lista.head().toString()+"\n";
+            lista = lista.tail();
+        }
+        return listaStr;
     }
 
 }
