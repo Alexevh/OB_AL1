@@ -375,7 +375,7 @@ public class SistemaAmbulancia implements ISistema {
         TipoRet ret = TipoRet.NO_IMPLEMENTADA;
 
         Integer[][] mapa = getMapaCiudades();
-        int nroCiudades = mapa.length;
+        int nroCiudades = listaCiudades.getCantidad();
         int ciudadDestino = ciudadID;
         Integer ciudadOrigen = null;
         Integer conexion = null;
@@ -426,12 +426,12 @@ public class SistemaAmbulancia implements ISistema {
         TipoRet ret = TipoRet.NO_IMPLEMENTADA;
 
         Integer[][] mapa = getMapaCiudades();
-        int mapaTam = mapa.length;
-        if (mapaTam <= ciudadOrigen || mapaTam <= ciudadDestino) {
-            if (mapaTam <= ciudadOrigen) {
+        int nroCiudades = listaCiudades.getCantidad();
+        if (nroCiudades <= ciudadOrigen || nroCiudades <= ciudadDestino) {
+            if (nroCiudades <= ciudadOrigen) {
                 System.out.println("La ciudad " + ciudadOrigen + " no existe");
             }
-            if (mapaTam <= ciudadDestino) {
+            if (nroCiudades <= ciudadDestino) {
                 System.out.println("La ciudad " + ciudadOrigen + " no existe");
             }
             ret = TipoRet.ERROR;
@@ -477,7 +477,8 @@ public class SistemaAmbulancia implements ISistema {
     }
 
     public Integer buscarRuta(Integer[][] mapa, int origen, int destino, Integer conexion, int tiempo, int conexionAux) {
-        if (conexionAux < mapa.length) {
+        int nroCiudades = listaCiudades.getCantidad();
+        if (conexionAux < nroCiudades) {
             if (mapa[origen][conexionAux] >= 0 && mapa[conexionAux][destino] >= 0 && mapa[origen][conexionAux] + mapa[conexionAux][destino] < tiempo) {
                 conexion = conexionAux;
                 tiempo = mapa[origen][conexion] + mapa[conexion][destino];
