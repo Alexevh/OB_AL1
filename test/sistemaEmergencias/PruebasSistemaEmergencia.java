@@ -11,20 +11,21 @@ package sistemaEmergencias;
  */
 import junit.framework.Assert;
 import org.junit.Test;
+import sistemaambulancia.ISistema;
 import sistemaambulancia.ISistema.TipoRet;
 import sistemaambulancia.SistemaAmbulancia;
+
 public class PruebasSistemaEmergencia {
-    
-       @Test
+
+    @Test
     public void testRegistrarCiudadNOExistente() {
-    
+
         SistemaAmbulancia sistema = new SistemaAmbulancia();
         sistema.crearSistemaDeEmergencias(10);
         TipoRet retornoObtenido = sistema.destruirSistemaEmergencias();
         TipoRet retornoEsperado = TipoRet.OK;
-       
+
         Assert.assertEquals(retornoObtenido, retornoEsperado);
-        
     }
-    
+
 }

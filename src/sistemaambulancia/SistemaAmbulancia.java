@@ -17,18 +17,15 @@ public class SistemaAmbulancia implements ISistema {
     private ListaAmbulancia listaAmbulancias;
     private ListaChofer listaChoferes;
     private ListaCiudad listaCiudades;
-    private Integer[][] MapaCiudades;
+    private Integer[][] mapaCiudades;
 
     public Integer[][] getMapaCiudades() {
-        return MapaCiudades;
+        return mapaCiudades;
     }
 
-    public void setMapaCiudades(Integer[][] MapaCiudades) {
-        this.MapaCiudades = MapaCiudades;
+    public void setmapaCiudades(Integer[][] mapaCiudades) {
+        this.mapaCiudades = mapaCiudades;
     }
-    
-    
-    
 
     @Override
     public Integer getCantCiudades() {
@@ -49,15 +46,14 @@ public class SistemaAmbulancia implements ISistema {
     public ListaCiudad getListaCiudades() {
         return listaCiudades;
     }
-    
+
     public SistemaAmbulancia() {
         this.cantCiudades = null;
         this.listaAmbulancias = new ListaAmbulancia();
         this.listaChoferes = new ListaChofer();
         this.listaCiudades = new ListaCiudad();
     }
-    
-    //NO DEBERÍA SER STATIC?
+
     @Override
     public TipoRet crearSistemaDeEmergencias(int cantCiudades) {
         TipoRet ret = TipoRet.NO_IMPLEMENTADA;
@@ -67,14 +63,22 @@ public class SistemaAmbulancia implements ISistema {
             System.out.println("La cantidad de ciudades es inferior a 1.");
         } else {
             this.cantCiudades = cantCiudades;
-            MapaCiudades = new Integer[cantCiudades][cantCiudades];
+            mapaCiudades = new Integer[cantCiudades][cantCiudades];
+            for (int h = 0; h < cantCiudades; h++) {
+                for (int v = 0; v < cantCiudades; v++) {
+                    if(h==v){
+                        mapaCiudades[h][v] = 0;
+                    }
+                    else{
+                        mapaCiudades[h][v] = -1;
+                    }
+                }
+            }
             ret = TipoRet.OK;
         }
         return ret;
     }
 
-    //NO DEBERÍA SER STATIC?
-    //LIBERA TODA LA MEMORIA UTILIZADA?
     @Override
     public TipoRet destruirSistemaEmergencias() {
         TipoRet ret = TipoRet.OK;
@@ -85,10 +89,14 @@ public class SistemaAmbulancia implements ISistema {
         listaCiudades = null;
         listaChoferes = null;
         cantCiudades = null;
+        for (int h = 0; h < cantCiudades; h++) {
+            for (int v = 0; v < cantCiudades; v++) {
+                mapaCiudades[h][v] = null;
+            }
+        }
+        mapaCiudades = null;
         return ret;
     }
-    
-    
 
     @Override
     public TipoRet eliminarAmbulancia(String ambulanciaID) {
@@ -106,7 +114,7 @@ public class SistemaAmbulancia implements ISistema {
             Ciudad ciu = amb.getCiudad();
             ciu.getAmbulancias().eliminarAmbulancia(amb);
             listaAmbulancias.eliminarAmbulancia(amb);
-            
+
             while (!choferesAmbulanciaEliminada.esVacia()) {
                 Chofer cho = choferesAmbulanciaEliminada.head();
                 cho.setAmbulancia(null);
@@ -307,90 +315,105 @@ public class SistemaAmbulancia implements ISistema {
 
     @Override
     public TipoRet agregarRuta(int ciudadOrigen, int ciudadDestino, int minutosViaje) {
-        TipoRet ret = TipoRet.OK;
+        TipoRet ret = TipoRet.NO_IMPLEMENTADA;
 
-        if (this.listaCiudades.buscar(ciudadOrigen) ==null)
-        {
-            
-            System.out.println("La ciudad "+ciudadOrigen+" no existe");
+        if (listaCiudades.buscar(ciudadOrigen) == null) {
+            System.out.println("La ciudad " + ciudadOrigen + " no existe");
             ret = TipoRet.ERROR;
             return ret;
-        } else if (this.listaCiudades.buscar(ciudadDestino) ==null)
-        {
-            System.out.println("La ciudad "+ciudadDestino+" no existe");
+        } else if (listaCiudades.buscar(ciudadDestino) == null) {
+            System.out.println("La ciudad " + ciudadDestino + " no existe");
             ret = TipoRet.ERROR;
             return ret;
-            
-        } else if (minutosViaje <=0)
-        {
+
+        } else if (minutosViaje <= 0) {
             System.out.println("La duracion del viaje debe ser mayor que 0.");
             ret = TipoRet.ERROR;
             return ret;
         } else {
-            
-            this.MapaCiudades[ciudadOrigen][ciudadDestino] = minutosViaje;
-            this.MapaCiudades[ciudadDestino][ciudadOrigen] = minutosViaje;
+
+            mapaCiudades[ciudadOrigen][ciudadDestino] = minutosViaje;
+            mapaCiudades[ciudadDestino][ciudadOrigen] = minutosViaje;
             ret = TipoRet.OK;
-        
+
             return ret;
         }
-            
-            
-        
+
     }
 
     @Override
     public TipoRet modificarDemora(int ciudadOrigen, int ciudadDestino, int minutosViaje) {
-       
-           TipoRet ret = TipoRet.OK;
+        TipoRet ret = TipoRet.NO_IMPLEMENTADA;
 
-        if (this.listaCiudades.buscar(ciudadOrigen) ==null)
-        {
-            
-            System.out.println("La ciudad "+ciudadOrigen+" no existe");
+        if (listaCiudades.buscar(ciudadOrigen) == null) {
+            System.out.println("La ciudad " + ciudadOrigen + " no existe");
             ret = TipoRet.ERROR;
             return ret;
-        } else if (this.listaCiudades.buscar(ciudadDestino) ==null)
-        {
-            System.out.println("La ciudad "+ciudadDestino+" no existe");
+        } else if (listaCiudades.buscar(ciudadDestino) == null) {
+            System.out.println("La ciudad " + ciudadDestino + " no existe");
             ret = TipoRet.ERROR;
             return ret;
-            
-        } else if (minutosViaje <=0)
-        {
+
+        } else if (minutosViaje <= 0) {
             System.out.println("La duracion del viaje debe ser mayor que 0.");
             ret = TipoRet.ERROR;
             return ret;
         } else {
-            
-            this.MapaCiudades[ciudadOrigen][ciudadDestino] = minutosViaje;
-            this.MapaCiudades[ciudadDestino][ciudadOrigen] = minutosViaje;
+
+            mapaCiudades[ciudadOrigen][ciudadDestino] = minutosViaje;
+            mapaCiudades[ciudadDestino][ciudadOrigen] = minutosViaje;
             ret = TipoRet.OK;
-        
+
             return ret;
-        
-    }
-        
+
+        }
+
     }
 
     @Override
     public TipoRet ambulanciaMasCercana(int ciudadID) {
         TipoRet ret = TipoRet.NO_IMPLEMENTADA;
 
-        int filas = this.MapaCiudades.length;
-        int columnas = this.MapaCiudades[0].length;
-        int inicio = 0;
-        int destino =0;
-        
-        //Recorro las filas
-        for (int i=0; i<filas; i++)
-        {
-            
-          
+        Integer[][] mapa = getMapaCiudades();
+        int nroCiudades = mapa.length;
+        int ciudadDestino = ciudadID;
+        Integer ciudadAmbulancia = null;
+        Integer conexion = null;
+        Integer conexionFinal = null;
+        int tiempo = -1;
+        Ambulancia amb = null;
+        Ciudad ciu = null;
+
+        for (int ori = 0; ori < nroCiudades; ori++) {
+            ciu = listaCiudades.buscar(ori);
+            if (!isNull(ciu)) {
+                amb = ciu.getAmbulancias().buscarUnaAmbulanciaDisponible();
+                if (!isNull(amb)) {
+                    conexion = buscarRuta(mapa, ori, ciudadDestino, conexion, Integer.MAX_VALUE, 0);
+                    if (!isNull(conexion)) {
+                        if (mapa[ori][conexion] + mapa[conexion][ciudadDestino] < tiempo || tiempo == -1) {
+                            tiempo = mapa[ori][conexion] + mapa[conexion][ciudadDestino];
+                            conexionFinal = conexion;
+                            ciudadAmbulancia = ori;
+                        }
+                    }
+                }
+            }
         }
-        
-        
-        
+
+        if (isNull(conexion)) {
+            ret = TipoRet.ERROR;
+            System.out.println("No hay ruta para la ciudad " + ciudadID);
+        } else if (isNull(amb)) {
+            ret = TipoRet.ERROR;
+            System.out.println("No hay ambulancias disponibles.");
+        } else {
+            ret = TipoRet.OK;
+            System.out.println("Ambulancia más cercana a " + ciu.toString());
+            System.out.println("Ambulancia: " + amb.getId());
+            System.out.println("Demora del viaje: " + tiempo);
+        }
+
         return ret;
     }
 
@@ -398,7 +421,66 @@ public class SistemaAmbulancia implements ISistema {
     public TipoRet rutaMasRapida(int ciudadOrigen, int ciudadDestino) {
         TipoRet ret = TipoRet.NO_IMPLEMENTADA;
 
+        Integer[][] mapa = getMapaCiudades();
+        int mapaTam = mapa.length;
+        if (mapaTam <= ciudadOrigen || mapaTam <= ciudadDestino) {
+            if (mapaTam <= ciudadOrigen) {
+                System.out.println("La ciudad " + ciudadOrigen + " no existe");
+            }
+            if (mapaTam <= ciudadDestino) {
+                System.out.println("La ciudad " + ciudadOrigen + " no existe");
+            }
+            ret = TipoRet.ERROR;
+        } else {
+            int tiempo = mapa[ciudadOrigen][ciudadDestino];
+            Integer conexion = null;
+
+//            int tiempoAux = Integer.MAX_VALUE;;
+//            if (tiempo > 0) {
+//                tiempoAux = tiempo;
+//            }
+//            for (int h = 0; h < mapaTam; h++) {
+//                if (mapa[ciudadOrigen][h] > 0 && mapa[ciudadOrigen][h] < tiempoAux) {
+//                    if (mapa[h][ciudadDestino] > 0 && mapa[ciudadOrigen][h] + mapa[h][ciudadDestino] < tiempoAux) {
+//                        tiempoAux = mapa[ciudadOrigen][h] + mapa[h][ciudadDestino];
+//                        conexion = h;
+//                    }
+//                }
+//            }
+            conexion = buscarRuta(mapa, ciudadOrigen, ciudadDestino, conexion, Integer.MAX_VALUE, 0);
+
+            Ciudad ori = listaCiudades.buscar(ciudadOrigen);
+            Ciudad des = listaCiudades.buscar(ciudadDestino);
+            System.out.println("Ruta más rápida:");
+            if (isNull(conexion) && tiempo == -1) {
+                System.out.println("No hay ruta desde " + ori.getNombre() + " a " + des.getNombre());
+            } else if (!isNull(conexion)) {
+                Ciudad con = listaCiudades.buscar(conexion);
+                int total = mapa[ciudadOrigen][conexion] + mapa[conexion][ciudadDestino];
+                System.out.println(ori.getNombre() + " - " + mapa[ciudadOrigen][ciudadOrigen]);
+                System.out.println(con.getNombre() + " - " + mapa[ciudadOrigen][conexion]);
+                System.out.println(des.getNombre() + " - " + mapa[conexion][ciudadDestino]);                
+                System.out.println("Demora total Ambulancias: " + total);
+            } else {
+                System.out.println(ori.getNombre() + " - " + mapa[ciudadOrigen][ciudadOrigen]);
+                System.out.println(des.getNombre() + " - " + mapa[ciudadOrigen][ciudadDestino]);
+                System.out.println("Demora total Ambulancias: " + mapa[ciudadOrigen][ciudadDestino]);
+            }
+            ret = TipoRet.OK;
+        }
+
         return ret;
+    }
+
+    public Integer buscarRuta(Integer[][] mapa, int origen, int destino, Integer conexion, int tiempo, int conexionAux) {
+        if (conexionAux < mapa.length) {
+            if (mapa[origen][conexionAux] >= 0 && mapa[conexionAux][destino] >= 0 && mapa[origen][conexionAux] + mapa[conexionAux][destino] < tiempo) {
+                conexion = conexionAux;
+                tiempo = mapa[origen][conexion] + mapa[conexion][destino];
+            }
+            conexion = buscarRuta(mapa, origen, destino, conexion, tiempo, conexionAux + 1);
+        }
+        return conexion;
     }
 
     @Override
@@ -479,20 +561,5 @@ public class SistemaAmbulancia implements ISistema {
         }
         return ret;
     }
-    
-    
-    public void poblarCiudades()
-    {
-     
-       this.agregarCiudad("Montevideo");
-       this.agregarCiudad("Canelones");
-       this.agregarCiudad("Las Piedras");
-       
-       
-        
-        
-    }        
 
-    
-    
 }

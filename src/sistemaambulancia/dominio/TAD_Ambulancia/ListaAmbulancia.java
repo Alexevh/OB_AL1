@@ -81,6 +81,17 @@ public class ListaAmbulancia {
         }
         return resAmb;
     }
+    
+    public Ambulancia buscarUnaAmbulanciaDisponible() {
+        Ambulancia amb = null;
+        ListaAmbulancia listaAux = this;
+        while (!listaAux.esVacia() && isNull(amb)) {
+            if(listaAux.head().getEstado()==Ambulancia.TipoEstado.DISPONIBLE)
+                amb=listaAux.head();
+            listaAux = listaAux.tail();
+        }
+        return amb;
+    }
 
     public void insertarOrdenado(Ambulancia amb) {
         if (this.esVacia()) {
