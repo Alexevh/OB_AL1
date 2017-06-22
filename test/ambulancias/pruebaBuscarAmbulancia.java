@@ -26,18 +26,15 @@ public class pruebaBuscarAmbulancia {
         SistemaAmbulancia sistema = new SistemaAmbulancia();
         sistema.crearSistemaDeEmergencias(10);
         sistema.agregarCiudad("Montevideo");
-        Ciudad c = sistema.getListaCiudades().buscar(1);
+        
         //Registro una ambulancia
-        sistema.registrarAmbulancia("MON123", 1);
+        sistema.registrarAmbulancia("MON123", 0);
         
-        //Registro nuevamente la ambulancia con ID MON123
-        TipoRet retornoObtenido = sistema.registrarAmbulancia("MON123", 1);
-        TipoRet retornoEsperado = TipoRet.ERROR;
+        //Busco la ambulancia con ID MON123
+        TipoRet retornoObtenido = sistema.buscarAmbulancia("MON123");
+        TipoRet retornoEsperado = TipoRet.OK;
         
-        Assert.assertEquals(retornoObtenido,retornoEsperado );
-        
-        
-    
+        Assert.assertEquals(retornoEsperado, retornoObtenido);
     }
     
     @Test
@@ -50,20 +47,69 @@ public class pruebaBuscarAmbulancia {
         TipoRet retornoObtenido = sistema.buscarAmbulancia("MON224");
         TipoRet retornoEsperado = TipoRet.ERROR;
         
-        Assert.assertEquals(retornoObtenido,retornoEsperado );
+        Assert.assertEquals(retornoEsperado, retornoObtenido);
         
     }
     
     @Test
     public void testBuscarUltimaAmbulanciaAgregada() {
+        SistemaAmbulancia sistema = new SistemaAmbulancia();
+        sistema.crearSistemaDeEmergencias(10);
+        sistema.agregarCiudad("Montevideo");
+        sistema.agregarCiudad("Canelones");
+        
+        //Registro una ambulancia
+        sistema.registrarAmbulancia("MON123", 0);
+        sistema.registrarAmbulancia("CAN123", 1);
+        
+        TipoRet retornoObtenido = sistema.buscarAmbulancia("CAN123");
+        TipoRet retornoEsperado = TipoRet.OK;
+        
+        Assert.assertEquals(retornoObtenido,retornoEsperado);
     }
     
     @Test
-    public void testBuscarPrimeraAmbulanciaAgregada() {}
+    public void testBuscarPrimeraAmbulanciaAgregada() {
+        SistemaAmbulancia sistema = new SistemaAmbulancia();
+        sistema.crearSistemaDeEmergencias(10);
+        sistema.agregarCiudad("Montevideo");
+        sistema.agregarCiudad("Canelones");
+        
+        //Registro una ambulancia
+        sistema.registrarAmbulancia("MON123", 0);
+        sistema.registrarAmbulancia("CAN123", 1);
+        
+        TipoRet retornoObtenido = sistema.buscarAmbulancia("MON123");
+        TipoRet retornoEsperado = TipoRet.OK;
+        
+        Assert.assertEquals(retornoObtenido,retornoEsperado);
+    }
     
     @Test
-    public void testBuscarAmbulanciaConUnaSolaAmbulanciaEnLaLista() {}
+    public void testBuscarAmbulanciaConUnaSolaAmbulanciaEnLaLista() {
+    SistemaAmbulancia sistema = new SistemaAmbulancia();
+        sistema.crearSistemaDeEmergencias(10);
+        sistema.agregarCiudad("Montevideo");
+        
+        //Registro una ambulancia
+        sistema.registrarAmbulancia("MON123", 0);
+        
+        TipoRet retornoObtenido = sistema.buscarAmbulancia("MON123");
+        TipoRet retornoEsperado = TipoRet.OK;
+        
+        Assert.assertEquals(retornoObtenido,retornoEsperado);
+    }
     
     @Test
-    public void testBuscarAmbulanciaConLaListaVacia() {}
+    public void testBuscarAmbulanciaConLaListaVacia() {
+    SistemaAmbulancia sistema = new SistemaAmbulancia();
+        sistema.crearSistemaDeEmergencias(10);
+        sistema.agregarCiudad("Montevideo");
+        sistema.agregarCiudad("Canelones");
+        
+        TipoRet retornoObtenido = sistema.buscarAmbulancia("CAN123");
+        TipoRet retornoEsperado = TipoRet.ERROR;
+        
+        Assert.assertEquals(retornoObtenido,retornoEsperado);
+    }
 }
