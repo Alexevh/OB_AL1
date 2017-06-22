@@ -66,10 +66,9 @@ public class SistemaAmbulancia implements ISistema {
             mapaCiudades = new Integer[cantCiudades][cantCiudades];
             for (int h = 0; h < cantCiudades; h++) {
                 for (int v = 0; v < cantCiudades; v++) {
-                    if(h==v){
+                    if (h == v) {
                         mapaCiudades[h][v] = 0;
-                    }
-                    else{
+                    } else {
                         mapaCiudades[h][v] = -1;
                     }
                 }
@@ -382,7 +381,7 @@ public class SistemaAmbulancia implements ISistema {
         Integer conexionFinal = null;
         int tiempo = -1;
         Ambulancia amb = null;
-        Ambulancia ambFinal = null;        
+        Ambulancia ambFinal = null;
         Ciudad ciu = null;
 
         for (int ori = 0; ori < nroCiudades; ori++) {
@@ -463,7 +462,7 @@ public class SistemaAmbulancia implements ISistema {
                 int total = mapa[ciudadOrigen][conexion] + mapa[conexion][ciudadDestino];
                 System.out.println(ori.getNombre() + " - " + mapa[ciudadOrigen][ciudadOrigen]);
                 System.out.println(con.getNombre() + " - " + mapa[ciudadOrigen][conexion]);
-                System.out.println(des.getNombre() + " - " + mapa[conexion][ciudadDestino]);                
+                System.out.println(des.getNombre() + " - " + mapa[conexion][ciudadDestino]);
                 System.out.println("Demora total Ambulancias: " + total);
             } else {
                 System.out.println(ori.getNombre() + " - " + mapa[ciudadOrigen][ciudadOrigen]);
@@ -491,14 +490,38 @@ public class SistemaAmbulancia implements ISistema {
     @Override
     public TipoRet informeCiudades() {
         TipoRet ret = TipoRet.NO_IMPLEMENTADA;
-
+        ret = TipoRet.OK;
+        int ciudades = listaCiudades.getCantidad();
+        for (int c = 0; c < ciudades; c++) {
+            System.out.print("Informe ciudad: " + c);
+            for (int d = 0; d < ciudades; d++) {
+                if (mapaCiudades[c][d] > 0) {
+                    System.out.print("Ruta directa a " + d + "," + mapaCiudades[c][d]);
+                }
+            }
+            Ciudad ciu = listaCiudades.buscar(c);
+            int ambDisponibles = ciu.getAmbulancias().filtrarPorEstado(Ambulancia.TipoEstado.DISPONIBLE).getCantidad();
+            int ambNoDisponibles = ciu.getAmbulancias().filtrarPorEstado(Ambulancia.TipoEstado.NO_DISPONIBLE).getCantidad();
+            System.out.print("Ambulancias disponibles: " + ambDisponibles);
+            System.out.print("Ambulancias no disponibles: " + ambNoDisponibles);
+        }
         return ret;
     }
 
     @Override
     public TipoRet ciudadesEnRadio(int ciudadID, int duracionViaje) {
         TipoRet ret = TipoRet.NO_IMPLEMENTADA;
-
+        ret = TipoRet.OK;
+        int ciudades = listaCiudades.getCantidad();
+        System.out.println("Ciudades en radio " + duracionViaje + " minutos:");
+        for (int d = 0; d < ciudades; d++) {
+            int duracion =  mapaCiudades[ciudadID][d];
+            if (duracion < duracionViaje && duracion!=0) {
+                if(duracion!=-1){
+                    System.out.print("Ciudad " + d + " a " + mapaCiudades[ciudadID][d] + " minutos");
+                }
+            }
+        }
         return ret;
     }
 

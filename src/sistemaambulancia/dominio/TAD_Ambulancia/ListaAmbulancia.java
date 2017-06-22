@@ -125,6 +125,22 @@ public class ListaAmbulancia {
             this.cantidad--;
         }
     }
+    
+    public ListaAmbulancia filtrarPorEstado(Ambulancia.TipoEstado estado){
+        Ambulancia amb;        
+        ListaAmbulancia listaAux = this;
+        ListaAmbulancia listaFiltrada = new ListaAmbulancia();
+        while (!listaAux.esVacia()) {
+            amb = listaAux.head();
+            if (amb.getEstado()==estado) {
+                listaFiltrada.insertarOrdenado(amb);
+            } else {
+                listaAux = listaAux.tail();
+            }
+        }
+        return listaFiltrada;   
+    }
+    
 
     public void destroy() {
         ListaAmbulancia lista = this;
