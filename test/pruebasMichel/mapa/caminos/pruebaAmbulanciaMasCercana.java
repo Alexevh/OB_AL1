@@ -40,7 +40,7 @@ public class pruebaAmbulanciaMasCercana {
 
         ISistema s = FuncionalidadesComunes.crearSistemaConCincoCiudadesDiezAmbulanciasSieteRutasCuatroChoferes();
 
-        assertEquals(ISistema.TipoRet.ERROR, s.ambulanciaMasCercana(50));
+        assertEquals(ISistema.TipoRet.OK, s.ambulanciaMasCercana(2));
 
         FuncionalidadesComunes.ImprimirFinDeTest();
 
@@ -50,7 +50,7 @@ public class pruebaAmbulanciaMasCercana {
     public void testAmbulanciaMasCercanaConRutaDirecta() {
         FuncionalidadesComunes.ImprimirComienzoDeTest();
 
-        ISistema s = FuncionalidadesComunes.crearSistemaConDiezCiudadesDiezAmbulanciasSieteRutasCuatroChoferes();
+        ISistema s = FuncionalidadesComunes.crearSistemaConDiezCiudadesDiezAmbulanciasSieteRutasCuatroChoferes();        
         System.out.println("ESPERADO: Se espera que sea la ciudad 1 con 120 minutos");
         assertEquals(ISistema.TipoRet.OK, s.ambulanciaMasCercana(5));
 

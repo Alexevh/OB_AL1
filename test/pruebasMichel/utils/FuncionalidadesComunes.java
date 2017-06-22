@@ -52,7 +52,7 @@ public class FuncionalidadesComunes {
 
         s.crearSistemaDeEmergencias(10);
 
-        for (int i = 1; i < 11; i++) {
+        for (int i = 1; i < 10; i++) {
             s.agregarCiudad("Ciudad" + i);
         }
 
@@ -103,7 +103,7 @@ public class FuncionalidadesComunes {
         s.registrarAmbulancia("SBT6108", 4);
         s.registrarAmbulancia("SBT6109", 3);
         
-        s.agregarRuta(5, 1, 120);
+        s.agregarRuta(1, 5, 120);
         s.agregarRuta(5, 2, 140);
         s.agregarRuta(5, 3, 400);
         s.agregarRuta(1, 4, 40);

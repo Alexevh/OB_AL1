@@ -86,13 +86,13 @@ public class SistemaAmbulancia implements ISistema {
         listaChoferes.destroy();
         listaAmbulancias = null;
         listaCiudades = null;
-        listaChoferes = null;
-        cantCiudades = null;
+        listaChoferes = null;        
         for (int h = 0; h < cantCiudades; h++) {
             for (int v = 0; v < cantCiudades; v++) {
                 mapaCiudades[h][v] = null;
             }
         }
+        cantCiudades = null;
         mapaCiudades = null;
         return ret;
     }
@@ -232,7 +232,7 @@ public class SistemaAmbulancia implements ISistema {
             ListaAmbulancia listaAux = ciu.getAmbulancias();
             if (listaAux.esVacia()) {
                 ret = TipoRet.OK;
-                System.out.println("No hay ambulancias en Ciudad "+ciu.getId());
+                System.out.println("No hay ambulancias en Ciudad " + ciu.getId());
             } else {
                 Ambulancia amb;
                 Integer totalDisponibles = 0;
@@ -373,48 +373,54 @@ public class SistemaAmbulancia implements ISistema {
     public TipoRet ambulanciaMasCercana(int ciudadID) {
         TipoRet ret = TipoRet.NO_IMPLEMENTADA;
 
-        Integer[][] mapa = getMapaCiudades();
-        int nroCiudades = listaCiudades.getCantidad();
-        int ciudadDestino = ciudadID;
-        Integer ciudadOrigen = null;
-        Integer conexion = null;
-        Integer conexionFinal = null;
-        int tiempo = -1;
-        Ambulancia amb = null;
-        Ambulancia ambFinal = null;
-        Ciudad ciu = null;
+        Ciudad c = listaCiudades.buscar(ciudadID);
+        if (isNull(c)) {
+            System.out.println("La ciudad " + ciudadID + " no existe.");
+            ret = TipoRet.ERROR;
+        } else {
+            Integer[][] mapa = getMapaCiudades();
+            int nroCiudades = listaCiudades.getCantidad();
+            int ciudadDestino = ciudadID;
+            Integer ciudadOrigen = null;
+            Integer conexion = null;
+            Integer conexionFinal = null;
+            int tiempo = -1;
+            Ambulancia amb = null;
+            Ambulancia ambFinal = null;
+            Ciudad ciu = null;
 
-        for (int ori = 0; ori < nroCiudades; ori++) {
-            ciu = listaCiudades.buscar(ori);
-            if (!isNull(ciu)) {
-                amb = ciu.getAmbulancias().buscarUnaAmbulanciaDisponible();
-                if (!isNull(amb)) {
-                    conexion = buscarRuta(mapa, ori, ciudadDestino, conexion, Integer.MAX_VALUE, 0);
-                    if (!isNull(conexion)) {
-                        if (mapa[ori][conexion] + mapa[conexion][ciudadDestino] < tiempo || tiempo == -1) {
-                            tiempo = mapa[ori][conexion] + mapa[conexion][ciudadDestino];
-                            conexionFinal = conexion;
-                            ciudadOrigen = ori;
-                            ambFinal = amb;
+            for (int ori = 0; ori < nroCiudades; ori++) {
+                ciu = listaCiudades.buscar(ori);
+                if (!isNull(ciu)) {
+                    amb = ciu.getAmbulancias().buscarUnaAmbulanciaDisponible();
+                    if (!isNull(amb)) {
+                        conexion = buscarRuta(mapa, ori, ciudadDestino, conexion, Integer.MAX_VALUE, 0);
+                        if (!isNull(conexion)) {
+                            if (mapa[ori][conexion] + mapa[conexion][ciudadDestino] < tiempo || tiempo == -1) {
+                                tiempo = mapa[ori][conexion] + mapa[conexion][ciudadDestino];
+                                conexionFinal = conexion;
+                                ciudadOrigen = ori;
+                                ambFinal = amb;
+                            }
                         }
                     }
                 }
             }
-        }
 
-        if (isNull(amb)) {
-            ret = TipoRet.ERROR;
-            System.out.println("No hay ambulancias disponibles.");
-        } else if (isNull(conexionFinal)) {
-            ret = TipoRet.ERROR;
-            System.out.println("No hay ruta para la ciudad " + ciudadID);
-        } else {
-            ret = TipoRet.OK;
-            Ciudad ciuDes = listaCiudades.buscar(ciudadDestino);
-            //Ciudad ciuOri = listaCiudades.buscar(ciudadOrigen);
-            System.out.println("Ambulancia más cercana a " + ciuDes.toString());
-            System.out.println("Ambulancia: " + ambFinal.getId());
-            System.out.println("Demora del viaje: " + tiempo);
+            if (isNull(ambFinal)) {
+                ret = TipoRet.OK;
+                System.out.println("No hay ambulancias disponibles.");
+            } else if (isNull(conexionFinal)) {
+                ret = TipoRet.OK;
+                System.out.println("No hay ruta para la ciudad " + ciudadID);
+            } else {
+                ret = TipoRet.OK;
+                Ciudad ciuDes = listaCiudades.buscar(ciudadDestino);
+                //Ciudad ciuOri = listaCiudades.buscar(ciudadOrigen);
+                System.out.println("Ambulancia más cercana a " + ciuDes.toString());
+                System.out.println("Ambulancia: " + ambFinal.getId());
+                System.out.println("Demora del viaje: " + tiempo);
+            }
         }
 
         return ret;
@@ -513,21 +519,30 @@ public class SistemaAmbulancia implements ISistema {
     @Override
     public TipoRet ciudadesEnRadio(int ciudadID, int duracionViaje) {
         TipoRet ret = TipoRet.NO_IMPLEMENTADA;
-        ret = TipoRet.OK;
-        int ciudades = listaCiudades.getCantidad();
-        System.out.println("Ciudades en radio " + duracionViaje + " minutos:");
-        for (int d = 0; d < ciudades; d++) {
-            Integer conexion = buscarRuta(mapaCiudades, ciudadID, d, null, Integer.MAX_VALUE, 0);
-            int duracion =  mapaCiudades[ciudadID][conexion] + mapaCiudades[conexion][d];
-            if (duracion < duracionViaje && duracion>0) {
-                System.out.println("Ciudad " + d + " a " + duracion + " minutos");                
+        Ciudad ciu = listaCiudades.buscar(ciudadID);
+        if (isNull(ciu) || duracionViaje <= 0) {
+            ret = TipoRet.ERROR;
+            if (isNull(ciu)) {
+                System.out.println("La ciudad " + ciudadID + " no existe.");
+            }
+            if (duracionViaje <= 0) {
+                System.out.println("La duración del viaje debe ser mayor que 0.");
+            }
+        } else {
+            ret = TipoRet.OK;
+            int ciudades = listaCiudades.getCantidad();
+            System.out.println("Ciudades en radio " + duracionViaje + " minutos:");
+            for (int d = 0; d < ciudades; d++) {
+                Integer conexion = buscarRuta(mapaCiudades, ciudadID, d, null, Integer.MAX_VALUE, 0);
+                int duracion = mapaCiudades[ciudadID][conexion] + mapaCiudades[conexion][d];
+                if (duracion < duracionViaje && duracion > 0) {
+                    System.out.println("Ciudad " + d + " a " + duracion + " minutos");
+                }
             }
         }
         return ret;
     }
 
-    //PRE: No existe un chofer con cedula=choferID habilitado para conducir la ambulanciaID.
-    //POR QUÉ NO HACER UN CONTAINS DENTRO E INFORMAR CON UN MENSAJE EN CASO DE QUE YA EXISTE? (COMO EN ELIMINARCHOFER)
     @Override
     public TipoRet registrarChofer(String ambulanciaID, String nombre, String cedula) {
         TipoRet ret = TipoRet.NO_IMPLEMENTADA;
