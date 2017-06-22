@@ -515,11 +515,10 @@ public class SistemaAmbulancia implements ISistema {
         int ciudades = listaCiudades.getCantidad();
         System.out.println("Ciudades en radio " + duracionViaje + " minutos:");
         for (int d = 0; d < ciudades; d++) {
-            int duracion =  mapaCiudades[ciudadID][d];
-            if (duracion < duracionViaje && duracion!=0) {
-                if(duracion!=-1){
-                    System.out.print("Ciudad " + d + " a " + mapaCiudades[ciudadID][d] + " minutos");
-                }
+            Integer conexion = buscarRuta(mapaCiudades, ciudadID, d, null, Integer.MAX_VALUE, 0);
+            int duracion =  mapaCiudades[ciudadID][conexion] + mapaCiudades[conexion][d];
+            if (duracion < duracionViaje && duracion>0) {
+                System.out.print("Ciudad " + d + " a " + duracion + " minutos");                
             }
         }
         return ret;
