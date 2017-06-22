@@ -125,21 +125,33 @@ public class ListaAmbulancia {
         }
     }
     
-    public ListaAmbulancia filtrarPorEstado(Ambulancia.TipoEstado estado){
+    public Integer cantidadDisponibles(){
         Ambulancia amb;        
         ListaAmbulancia listaAux = this;
-        ListaAmbulancia listaFiltrada = new ListaAmbulancia();
+        int cantAmb = 0;
         while (!listaAux.esVacia()) {
             amb = listaAux.head();
-            if (amb.getEstado()==estado) {
-                listaFiltrada.insertarOrdenado(amb);
-            } else {
-                listaAux = listaAux.tail();
+            if (amb.getEstado()==Ambulancia.TipoEstado.DISPONIBLE) {
+                cantAmb++;
             }
+            listaAux = listaAux.tail();
         }
-        return listaFiltrada;   
+        return cantAmb;   
     }
     
+    public Integer cantidadNoDisponibles(){
+        Ambulancia amb;        
+        ListaAmbulancia listaAux = this;
+        int cantAmb = 0;
+        while (!listaAux.esVacia()) {
+            amb = listaAux.head();
+            if (amb.getEstado()==Ambulancia.TipoEstado.NO_DISPONIBLE) {
+                cantAmb++;
+            }
+            listaAux = listaAux.tail();
+        }
+        return cantAmb;   
+    }
 
     public void destroy() {
         ListaAmbulancia lista = this;

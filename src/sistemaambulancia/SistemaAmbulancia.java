@@ -493,17 +493,19 @@ public class SistemaAmbulancia implements ISistema {
         ret = TipoRet.OK;
         int ciudades = listaCiudades.getCantidad();
         for (int c = 0; c < ciudades; c++) {
-            System.out.print("Informe ciudad: " + c);
+            System.out.println("Informe ciudad: " + c);
             for (int d = 0; d < ciudades; d++) {
                 if (mapaCiudades[c][d] > 0) {
-                    System.out.print("Ruta directa a " + d + "," + mapaCiudades[c][d]);
+                    System.out.println("Ruta directa a Ciudad " + d + ", minutos " + mapaCiudades[c][d]);
                 }
             }
             Ciudad ciu = listaCiudades.buscar(c);
-            int ambDisponibles = ciu.getAmbulancias().filtrarPorEstado(Ambulancia.TipoEstado.DISPONIBLE).getCantidad();
-            int ambNoDisponibles = ciu.getAmbulancias().filtrarPorEstado(Ambulancia.TipoEstado.NO_DISPONIBLE).getCantidad();
-            System.out.print("Ambulancias disponibles: " + ambDisponibles);
-            System.out.print("Ambulancias no disponibles: " + ambNoDisponibles);
+            ListaAmbulancia ambs = ciu.getAmbulancias();
+
+            int ambDisponibles = ambs.cantidadDisponibles();
+            int ambNoDisponibles = ambs.cantidadNoDisponibles();
+            System.out.println("Ambulancias disponibles: " + ambDisponibles);
+            System.out.println("Ambulancias no disponibles: " + ambNoDisponibles);
         }
         return ret;
     }
@@ -518,7 +520,7 @@ public class SistemaAmbulancia implements ISistema {
             Integer conexion = buscarRuta(mapaCiudades, ciudadID, d, null, Integer.MAX_VALUE, 0);
             int duracion =  mapaCiudades[ciudadID][conexion] + mapaCiudades[conexion][d];
             if (duracion < duracionViaje && duracion>0) {
-                System.out.print("Ciudad " + d + " a " + duracion + " minutos");                
+                System.out.println("Ciudad " + d + " a " + duracion + " minutos");                
             }
         }
         return ret;
