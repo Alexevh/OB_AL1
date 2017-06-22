@@ -70,7 +70,7 @@ public class pruebasAgregarRutasMapas {
     }
     
       @Test
-      public void testAgregarRutaAlMapaMInutoscero() {
+      public void testAgregarRutaAlMapaMinutoscero() {
     
         SistemaAmbulancia sistema = new SistemaAmbulancia();
         
@@ -87,7 +87,7 @@ public class pruebasAgregarRutasMapas {
     }
     
       @Test
-      public void testModificarrRutaAlMapaMInutoscero() {
+      public void testModificarrRutaAlMapaMinutoscero() {
     
         SistemaAmbulancia sistema = new SistemaAmbulancia();
         
@@ -127,7 +127,7 @@ public class pruebasAgregarRutasMapas {
     }
       
             @Test
-      public void testModificarDemoraDestinoNOExiste() {
+      public void testModificarDemoraDestinoNoExiste() {
     
         SistemaAmbulancia sistema = new SistemaAmbulancia();
         
