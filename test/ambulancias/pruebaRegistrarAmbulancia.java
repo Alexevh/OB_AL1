@@ -20,8 +20,7 @@ import sistemaambulancia.dominio.Ciudad;
  */
 public class pruebaRegistrarAmbulancia {
     
-    public pruebaRegistrarAmbulancia() {
-    }
+  
 
     @Test
     public void testAgregarUnaAmbulancia(){
@@ -73,7 +72,18 @@ public class pruebaRegistrarAmbulancia {
     
     @Test
     public void testAgregarDiezAmbulancia(){
+        SistemaAmbulancia sistema = new SistemaAmbulancia();
+        sistema.crearSistemaDeEmergencias(10);
+       
+        sistema.agregarCiudad("Montevideo");
         
+        sistema.registrarAmbulancia("MON123", 1);
+        sistema.registrarAmbulancia("MON124", 1);
+        sistema.registrarAmbulancia("MON121", 1);
+        sistema.registrarAmbulancia("MON125", 1);
+        sistema.registrarAmbulancia("MON126", 1);
+        sistema.registrarAmbulancia("MON127", 1);
+       
     }
     
             
