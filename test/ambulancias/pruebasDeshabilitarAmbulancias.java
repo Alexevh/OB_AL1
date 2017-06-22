@@ -11,10 +11,6 @@ import sistemaambulancia.ISistema;
 import sistemaambulancia.SistemaAmbulancia;
 import sistemaambulancia.dominio.Ambulancia;
 
-/**
- *
- * @author alex
- */
 public class pruebasDeshabilitarAmbulancias {
     
         @Test

@@ -11,17 +11,11 @@ import sistemaambulancia.ISistema;
 import sistemaambulancia.SistemaAmbulancia;
 import sistemaambulancia.dominio.Ambulancia;
 
-/**
- *
- * @author alex
- */
 public class pruebasCambiarUbicacionAmbulancia {
-    
+
     @Test
-    public void testCambiarUbicacionAmbulancia(){
-        
-        
-        
+    public void testCambiarUbicacionAmbulancia() {
+
         SistemaAmbulancia sistema = new SistemaAmbulancia();
         sistema.crearSistemaDeEmergencias(10);
         sistema.agregarCiudad("Montevideo");
@@ -33,20 +27,18 @@ public class pruebasCambiarUbicacionAmbulancia {
         sistema.registrarAmbulancia("MON721", 1);
         sistema.registrarAmbulancia("MON101", 1);
         sistema.registrarAmbulancia("AAA101", 1);
+
         //Asignamos la ambulancia a un viaje
         sistema.getListaAmbulancias().buscar("MON123").setEstado(Ambulancia.TipoEstado.ATENDIENDO);
-        
-       ISistema.TipoRet retornoObtenido = sistema.cambiarUbicacion("MON123", 2);
-       ISistema.TipoRet retornoEsperado = ISistema.TipoRet.OK;
-       Assert.assertEquals(retornoObtenido,retornoEsperado);
+
+        ISistema.TipoRet retornoObtenido = sistema.cambiarUbicacion("MON123", 2);
+        ISistema.TipoRet retornoEsperado = ISistema.TipoRet.OK;
+        Assert.assertEquals(retornoEsperado, retornoObtenido);
     }
-    
-    
-        @Test
-    public void testCambiarUbicacionAmbulancianciaNoExistente(){
-        
-        
-        
+
+    @Test
+    public void testCambiarUbicacionAmbulancianciaNoExistente() {
+
         SistemaAmbulancia sistema = new SistemaAmbulancia();
         sistema.crearSistemaDeEmergencias(10);
         sistema.agregarCiudad("Montevideo");
@@ -60,20 +52,15 @@ public class pruebasCambiarUbicacionAmbulancia {
         sistema.registrarAmbulancia("AAA101", 1);
         //Asignamos la ambulancia a un viaje
         sistema.getListaAmbulancias().buscar("MON123").setEstado(Ambulancia.TipoEstado.ATENDIENDO);
-        
-       ISistema.TipoRet retornoObtenido = sistema.cambiarUbicacion("MON125", 2);
-       ISistema.TipoRet retornoEsperado = ISistema.TipoRet.ERROR;
-       Assert.assertEquals(retornoObtenido,retornoEsperado);
+
+        ISistema.TipoRet retornoObtenido = sistema.cambiarUbicacion("MON125", 2);
+        ISistema.TipoRet retornoEsperado = ISistema.TipoRet.ERROR;
+        Assert.assertEquals(retornoEsperado, retornoObtenido);
     }
-    
-    
-    
-    
-        @Test
-    public void testCambiarUbicacionAmbulanciaCiudadNoExistente(){
-        
-        
-        
+
+    @Test
+    public void testCambiarUbicacionAmbulanciaCiudadNoExistente() {
+
         SistemaAmbulancia sistema = new SistemaAmbulancia();
         sistema.crearSistemaDeEmergencias(10);
         sistema.agregarCiudad("Montevideo");
@@ -87,9 +74,9 @@ public class pruebasCambiarUbicacionAmbulancia {
         sistema.registrarAmbulancia("AAA101", 1);
         //Asignamos la ambulancia a un viaje
         sistema.getListaAmbulancias().buscar("MON123").setEstado(Ambulancia.TipoEstado.ATENDIENDO);
-        
-       ISistema.TipoRet retornoObtenido = sistema.cambiarUbicacion("MON123", 9);
-       ISistema.TipoRet retornoEsperado = ISistema.TipoRet.ERROR;
-       Assert.assertEquals(retornoObtenido,retornoEsperado);
+
+        ISistema.TipoRet retornoObtenido = sistema.cambiarUbicacion("MON123", 9);
+        ISistema.TipoRet retornoEsperado = ISistema.TipoRet.ERROR;
+        Assert.assertEquals(retornoEsperado, retornoObtenido);
     }
 }

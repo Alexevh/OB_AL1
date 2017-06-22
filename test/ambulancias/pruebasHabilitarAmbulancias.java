@@ -11,64 +11,55 @@ import sistemaambulancia.ISistema;
 import sistemaambulancia.SistemaAmbulancia;
 import sistemaambulancia.dominio.Ambulancia;
 
-/**
- *
- * @author alex
- */
 public class pruebasHabilitarAmbulancias {
-    
-      @Test
-    public void testHabilitarUnaAmbulanciaDeshabilidatada(){
-        
+
+    @Test
+    public void testHabilitarUnaAmbulanciaDeshabilidatada() {
+
         SistemaAmbulancia sistema = new SistemaAmbulancia();
         sistema.crearSistemaDeEmergencias(10);
         sistema.agregarCiudad("Montevideo");
-        sistema.registrarAmbulancia("MON123", 1);
-        
+        sistema.registrarAmbulancia("MON123", 0);
+
         Ambulancia amb = sistema.getListaAmbulancias().buscar("MON123");
         amb.setEstado(Ambulancia.TipoEstado.NO_DISPONIBLE);
-        
-      
+
         //Habilitamos la abulancia deshablitada
         ISistema.TipoRet retornoObtenido = sistema.habilitarAmbulancia("MON123");
         ISistema.TipoRet retornoEsperado = ISistema.TipoRet.OK;
-        
-        Assert.assertEquals(retornoObtenido,retornoEsperado);
+
+        Assert.assertEquals(retornoEsperado, retornoObtenido);
     }
-    
-    
-        @Test
-    public void testHabilitarUnaAmbulanciaYahabilidatada(){
-        
+
+    @Test
+    public void testHabilitarUnaAmbulanciaYahabilidatada() {
+
         SistemaAmbulancia sistema = new SistemaAmbulancia();
         sistema.crearSistemaDeEmergencias(10);
         sistema.agregarCiudad("Montevideo");
-        sistema.registrarAmbulancia("MON123", 1);
-        
+        sistema.registrarAmbulancia("MON123", 0);
+
         Ambulancia amb = sistema.getListaAmbulancias().buscar("MON123");
         amb.setEstado(Ambulancia.TipoEstado.DISPONIBLE);
-        
-      
+
         //Habilitamos la abulancia deshablitada
         ISistema.TipoRet retornoObtenido = sistema.habilitarAmbulancia("MON123");
         ISistema.TipoRet retornoEsperado = ISistema.TipoRet.ERROR;
-        
-        Assert.assertEquals(retornoObtenido,retornoEsperado);
+
+        Assert.assertEquals(retornoEsperado, retornoObtenido);
     }
-    
-        @Test
-    public void testHabilitarUnaAmbulanciaInexistente(){
-        
+
+    @Test
+    public void testHabilitarUnaAmbulanciaInexistente() {
+
         SistemaAmbulancia sistema = new SistemaAmbulancia();
         sistema.crearSistemaDeEmergencias(10);
         sistema.agregarCiudad("Montevideo");
-       
 
-      
         //Habilitamos la abulancia que no existe
         ISistema.TipoRet retornoObtenido = sistema.habilitarAmbulancia("MON123");
         ISistema.TipoRet retornoEsperado = ISistema.TipoRet.ERROR;
-        
-        Assert.assertEquals(retornoObtenido,retornoEsperado);
+
+        Assert.assertEquals(retornoEsperado, retornoObtenido);
     }
 }
