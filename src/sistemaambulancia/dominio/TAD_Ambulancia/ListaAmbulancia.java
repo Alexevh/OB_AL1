@@ -151,4 +151,16 @@ public class ListaAmbulancia {
         this.inicio=null;
         this.cantidad=null;
     }
+    
+    @Override
+    public String toString() {
+        ListaAmbulancia lista = this;
+        String listaStr = "";
+        while (!lista.esVacia()) {
+            listaStr += lista.head().toString()+"\n";
+            lista = lista.tail();
+        }
+        return listaStr;
+    }
+    
 }

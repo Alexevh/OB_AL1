@@ -69,4 +69,10 @@ public class Ambulancia {
             this.estado = null;
             this.emergencias = null;        
     }
+    
+    @Override
+    public String toString() {
+        return this.getId();
+    }
+    
 }
