@@ -40,7 +40,7 @@ public class FuncionalidadesComunes {
 
         for (int i = 1; i <= x; i++) {
             s.agregarCiudad("Ciudad" + i);
-            s.registrarAmbulancia("Ambulancia" + i, i);
+            s.registrarAmbulancia("Ambulancia" + i, i-1);
         }
         return s;
 
