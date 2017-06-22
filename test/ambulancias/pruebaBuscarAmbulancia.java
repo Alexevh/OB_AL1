@@ -41,7 +41,7 @@ public class pruebaBuscarAmbulancia {
     }
     
     @Test
-    public void testBuscarAmbulanciaConAmbulanciaIdNOExistente() {
+    public void testBuscarAmbulanciaConAmbulanciaIdNoExistente() {
     
         SistemaAmbulancia sistema = new SistemaAmbulancia();
         sistema.crearSistemaDeEmergencias(10);
@@ -52,19 +52,11 @@ public class pruebaBuscarAmbulancia {
         
         Assert.assertEquals(retornoObtenido,retornoEsperado );
         
-        
-        
     }
-    
-    
     
     @Test
     public void testBuscarUltimaAmbulanciaAgregada() {
-    
-     
-        
     }
-    
     
     @Test
     public void testBuscarPrimeraAmbulanciaAgregada() {}
