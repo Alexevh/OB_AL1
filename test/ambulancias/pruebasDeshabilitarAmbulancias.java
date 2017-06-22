@@ -46,7 +46,7 @@ public class pruebasDeshabilitarAmbulancias {
     }
     
         @Test
-    public void testDesHabilitarUnaAmbulanciaYaNODisponible(){
+    public void testDesHabilitarUnaAmbulanciaYaNoDisponible(){
         
         SistemaAmbulancia sistema = new SistemaAmbulancia();
         sistema.crearSistemaDeEmergencias(10);

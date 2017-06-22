@@ -18,7 +18,7 @@ public class PruebaRegistrarCiudad {
     
     
      @Test
-    public void testRegistrarCiudadNOExistente() {
+    public void testRegistrarCiudadNoExistente() {
     
         SistemaAmbulancia sistema = new SistemaAmbulancia();
         sistema.crearSistemaDeEmergencias(10);
@@ -62,7 +62,7 @@ public class PruebaRegistrarCiudad {
     }
     
        @Test
-    public void testLIstarCiudades() {
+    public void testListarCiudades() {
     
         SistemaAmbulancia sistema = new SistemaAmbulancia();
         
@@ -80,7 +80,7 @@ public class PruebaRegistrarCiudad {
     }
     
     @Test
-    public void testLIstarCiudadesMapaVacio() {
+    public void testListarCiudadesMapaVacio() {
     
         SistemaAmbulancia sistema = new SistemaAmbulancia();
         

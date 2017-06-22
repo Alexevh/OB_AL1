@@ -18,7 +18,7 @@ import sistemaambulancia.dominio.Ambulancia;
 public class pruebasCambiarUbicacionAmbulancia {
     
     @Test
-    public void testCambiarUbicacionAMbulancia(){
+    public void testCambiarUbicacionAmbulancia(){
         
         
         
@@ -43,7 +43,7 @@ public class pruebasCambiarUbicacionAmbulancia {
     
     
         @Test
-    public void testCambiarUbicacionAMbulancianciaNoExistente(){
+    public void testCambiarUbicacionAmbulancianciaNoExistente(){
         
         
         
@@ -70,7 +70,7 @@ public class pruebasCambiarUbicacionAmbulancia {
     
     
         @Test
-    public void testCambiarUbicacionAMbulanciaCiudadNoExistente(){
+    public void testCambiarUbicacionAmbulanciaCiudadNoExistente(){
         
         
         

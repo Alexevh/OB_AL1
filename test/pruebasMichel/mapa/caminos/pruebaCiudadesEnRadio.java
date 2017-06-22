@@ -80,8 +80,8 @@ public class pruebaCiudadesEnRadio {
         ISistema s = FuncionalidadesComunes.crearSistemaConCincoCiudadesDiezAmbulanciasSieteRutasCuatroChoferes();
 
          s.agregarRuta(8, 5, 10);
-         s.modificarDemora(5, 1, 20);
-         s.modificarDemora(4, 1, 10);
+         s.modificarDemora(5, 1, 120);
+         s.modificarDemora(4, 1, 40);
         System.out.println("ESPERADO: No debe mostrar la ciudad 8 ya que está a dos ciudades intermedias"
                 + "Muestra: Ciudad1 a 40, Ciudad5 a 160"); 
         assertEquals(ISistema.TipoRet.OK, s.ciudadesEnRadio(4,270));
