@@ -1,23 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package mapas;
 
 import junit.framework.Assert;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import sistemaambulancia.ISistema;
 import sistemaambulancia.SistemaAmbulancia;
 
-/**
- *
- * @author alex
- */
+
 public class pruebasAgregarRutasMapas {
     
     
-       @Test
+    @Test
     public void testAgregarRutaAlMapa() {
     
         SistemaAmbulancia sistema = new SistemaAmbulancia();
@@ -70,7 +64,7 @@ public class pruebasAgregarRutasMapas {
     }
     
       @Test
-      public void testAgregarRutaAlMapaMInutoscero() {
+      public void testAgregarRutaAlMapaMinutoscero() {
     
         SistemaAmbulancia sistema = new SistemaAmbulancia();
         
@@ -87,7 +81,7 @@ public class pruebasAgregarRutasMapas {
     }
     
       @Test
-      public void testModificarrRutaAlMapaMInutoscero() {
+      public void testModificarrRutaAlMapaMinutoscero() {
     
         SistemaAmbulancia sistema = new SistemaAmbulancia();
         
@@ -127,7 +121,7 @@ public class pruebasAgregarRutasMapas {
     }
       
             @Test
-      public void testModificarDemoraDestinoNOExiste() {
+      public void testModificarDemoraDestinoNoExiste() {
     
         SistemaAmbulancia sistema = new SistemaAmbulancia();
         
@@ -166,5 +160,18 @@ public class pruebasAgregarRutasMapas {
         Assert.assertEquals(retornoObtenido, retornoEsperado);
     }
       
+      
+    @Test
+    public void testAgregarRutaConListaVaciaDeCiudades() {
+        
+        ISistema s = new SistemaAmbulancia();
+
+        s.crearSistemaDeEmergencias(10);
+
+        assertEquals(ISistema.TipoRet.ERROR, s.agregarRuta(1, 2, 10));
+
+      
+
+    }
       
 }
