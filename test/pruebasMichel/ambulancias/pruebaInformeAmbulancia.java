@@ -69,7 +69,7 @@ public class pruebaInformeAmbulancia {
 
         s.agregarCiudad("Ciudad1");
         s.agregarCiudad("Ciudad2");
-        s.agregarCiudad("Ciudad2");
+        s.agregarCiudad("Ciudad3");
 
         s.registrarAmbulancia("SBA1234", 2);
         s.registrarAmbulancia("SBA1233", 2);

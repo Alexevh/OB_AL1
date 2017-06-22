@@ -108,9 +108,8 @@ public class ListaChofer {
                 while (!nodoAux.getSiguiente().getChofer().equals(cho)) {
                     nodoAux=nodoAux.getSiguiente();
                 }
+                NodoChofer nodoEliminado = nodoAux.getSiguiente();   
                 nodoAux.setSiguiente(nodoAux.getSiguiente().getSiguiente());
-                
-                NodoChofer nodoEliminado = nodoAux.getSiguiente();                
                 nodoEliminado.setSiguiente(null);
             }
             this.cantidad--;

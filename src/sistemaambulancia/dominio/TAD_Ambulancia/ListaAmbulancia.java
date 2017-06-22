@@ -117,9 +117,8 @@ public class ListaAmbulancia {
                 while (!nodoAux.getSiguiente().getAmbulancia().equals(amb)) {
                     nodoAux = nodoAux.getSiguiente();
                 }
-                nodoAux.setSiguiente(nodoAux.getSiguiente().getSiguiente());
-
                 NodoAmbulancia nodoEliminado = nodoAux.getSiguiente();
+                nodoAux.setSiguiente(nodoAux.getSiguiente().getSiguiente());                
                 nodoEliminado.setSiguiente(null);
             }
             this.cantidad--;

@@ -133,11 +133,11 @@ public class pruebaEliminarAmbulancia {
         s.registrarAmbulancia("SBA1211", 1);
         s.registrarAmbulancia("SBA1212", 2);
         s.registrarAmbulancia("SBA1213", 2);
-        System.out.println(s.getListaAmbulancias().toString());
-//        assertEquals(ISistema.TipoRet.OK, s.eliminarAmbulancia("SBA1235"));
-//        assertEquals(ISistema.TipoRet.OK, s.eliminarAmbulancia("SBA1236"));
-//        assertEquals(ISistema.TipoRet.OK, s.eliminarAmbulancia("SBA1237"));
-//        assertEquals(ISistema.TipoRet.OK, s.eliminarAmbulancia("SBA1238"));
+        
+        assertEquals(ISistema.TipoRet.OK, s.eliminarAmbulancia("SBA1235"));
+        assertEquals(ISistema.TipoRet.OK, s.eliminarAmbulancia("SBA1236"));
+        assertEquals(ISistema.TipoRet.OK, s.eliminarAmbulancia("SBA1237"));
+        assertEquals(ISistema.TipoRet.OK, s.eliminarAmbulancia("SBA1238"));
 
         FuncionalidadesComunes.ImprimirFinDeTest();
 

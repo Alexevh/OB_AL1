@@ -45,7 +45,7 @@ public class pruebaInformeAmbulanciaPorCiudad {
 
         s.agregarCiudad("Ciudad1");
         s.agregarCiudad("Ciudad2");
-        s.agregarCiudad("Ciudad2");
+        s.agregarCiudad("Ciudad3");
 
         assertEquals(ISistema.TipoRet.ERROR, s.informeAmbulancia(10));
 
@@ -82,7 +82,7 @@ public class pruebaInformeAmbulanciaPorCiudad {
 
         s.agregarCiudad("Ciudad1");
         s.agregarCiudad("Ciudad2");
-        s.agregarCiudad("Ciudad2");
+        s.agregarCiudad("Ciudad3");
 
         s.registrarAmbulancia("SBA1234", 2);
         System.out.println("ESPERADO: Se espera el listado vacio");
@@ -102,7 +102,7 @@ public class pruebaInformeAmbulanciaPorCiudad {
 
         s.agregarCiudad("Ciudad1");
         s.agregarCiudad("Ciudad2");
-        s.agregarCiudad("Ciudad2");
+        s.agregarCiudad("Ciudad3");
 
         s.registrarAmbulancia("SBA1234", 2);
         System.out.println("ESPERADO: Se espera una ambulancia en el listado habilitada");
@@ -147,7 +147,7 @@ public class pruebaInformeAmbulanciaPorCiudad {
 
         s.agregarCiudad("Ciudad1");
         s.agregarCiudad("Ciudad2");
-        s.agregarCiudad("Ciudad2");
+        s.agregarCiudad("Ciudad3");
 
         s.registrarAmbulancia("SBA1234", 1);
         s.registrarAmbulancia("SBA1235", 1);

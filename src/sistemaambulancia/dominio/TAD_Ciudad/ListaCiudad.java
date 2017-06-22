@@ -108,9 +108,9 @@ public class ListaCiudad {
                 while (!nodoAux.getSiguiente().getCiudad().equals(ciu)) {
                     nodoAux = nodoAux.getSiguiente();
                 }
-                nodoAux.setSiguiente(nodoAux.getSiguiente().getSiguiente());
-
                 NodoCiudad nodoEliminado = nodoAux.getSiguiente();
+                nodoAux.setSiguiente(nodoAux.getSiguiente().getSiguiente());
+                
                 nodoEliminado.setSiguiente(null);
             }
             this.cantidad--;

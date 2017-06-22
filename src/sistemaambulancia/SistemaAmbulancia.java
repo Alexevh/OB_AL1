@@ -231,8 +231,8 @@ public class SistemaAmbulancia implements ISistema {
         } else {
             ListaAmbulancia listaAux = ciu.getAmbulancias();
             if (listaAux.esVacia()) {
-                ret = TipoRet.ERROR;
-                System.out.println("No se han registrado ambulancias.");
+                ret = TipoRet.OK;
+                System.out.println("No hay ambulancias en Ciudad "+ciu.getId());
             } else {
                 Ambulancia amb;
                 Integer totalDisponibles = 0;
