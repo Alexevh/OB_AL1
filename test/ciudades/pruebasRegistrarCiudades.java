@@ -14,7 +14,7 @@ import sistemaambulancia.SistemaAmbulancia;
  *
  * @author alex
  */
-public class PruebaRegistrarCiudad {
+public class pruebasRegistrarCiudades {
     
     
      @Test
@@ -25,7 +25,7 @@ public class PruebaRegistrarCiudad {
         TipoRet retornoObtenido = sistema.agregarCiudad("Montevideo");
         TipoRet retornoEsperado = TipoRet.OK;
        
-        Assert.assertEquals(retornoObtenido, retornoEsperado);
+        Assert.assertEquals(retornoEsperado, retornoObtenido);
         
     }
     
@@ -39,7 +39,7 @@ public class PruebaRegistrarCiudad {
         TipoRet retornoObtenido = sistema.agregarCiudad("Montevideo");
         TipoRet retornoEsperado = TipoRet.ERROR;
         sistema.destruirSistemaEmergencias();
-        Assert.assertEquals(retornoObtenido, retornoEsperado);
+        Assert.assertEquals(retornoEsperado, retornoObtenido);
         
     }
     
@@ -57,39 +57,7 @@ public class PruebaRegistrarCiudad {
         TipoRet retornoObtenido = sistema.agregarCiudad("Las toscas");
         TipoRet retornoEsperado = TipoRet.ERROR;
        
-        Assert.assertEquals(retornoObtenido, retornoEsperado);
+        Assert.assertEquals(retornoEsperado, retornoObtenido);
         
-    }
-    
-       @Test
-    public void testListarCiudades() {
-    
-        SistemaAmbulancia sistema = new SistemaAmbulancia();
-        
-        sistema.crearSistemaDeEmergencias(5);
-        sistema.agregarCiudad("Montevideo");
-        sistema.agregarCiudad("Panado");
-        sistema.agregarCiudad("Las Piedras");
-        
- 
-        TipoRet retornoObtenido = sistema.listarCiudades();
-        TipoRet retornoEsperado = TipoRet.OK;
-       
-        Assert.assertEquals(retornoObtenido, retornoEsperado);
-        
-    }
-    
-    @Test
-    public void testListarCiudadesMapaVacio() {
-    
-        SistemaAmbulancia sistema = new SistemaAmbulancia();
-        
-        sistema.crearSistemaDeEmergencias(5);
-       
-        TipoRet retornoObtenido = sistema.listarCiudades();
-        TipoRet retornoEsperado = TipoRet.OK;
-       
-        Assert.assertEquals(retornoObtenido, retornoEsperado);
-        
-    }
+    }    
 }
